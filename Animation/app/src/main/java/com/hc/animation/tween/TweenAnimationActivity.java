@@ -12,6 +12,8 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hc.animation.R;
 
@@ -22,6 +24,7 @@ import com.hc.animation.R;
 public class TweenAnimationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mImage;
+    private TextView mTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
         findViewById(R.id.btn_alpha_xml).setOnClickListener(this);
         findViewById(R.id.btn_set_xml).setOnClickListener(this);
         mImage = (ImageView) findViewById(R.id.img);
+        mTv = (TextView) findViewById(R.id.tv);
     }
 
     @Override
@@ -169,6 +173,22 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
         animationSet.addAnimation(alphaAnimation);
         // 动画结束是否保持结束时状态
 //        animationSet.setFillAfter(true);
+        animationSet.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                mTv.setText("onAnimationStart");
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mTv.setText("onAnimationEnd");
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                mTv.setText("onAnimationRepeat");
+            }
+        });
 
         mImage.startAnimation(animationSet);
     }
