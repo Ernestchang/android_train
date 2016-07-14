@@ -105,11 +105,21 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
      * */
     private void scaleAnimation() {
         /*
-        * 参数1/2： x轴缩放前后的缩放比
-        * 参数3/4： y轴缩放前后的缩放比
-        * 参数5/6： 确定缩放时x轴原点位置
-        * 参数7/8： 确定缩放时y轴原点位置
-        * 参数5/6/7/8： 确定缩放时基准点位置
+        * 第一个参数fromX为动画起始时 X坐标上的伸缩尺寸
+        * 第二个参数toX为动画结束时 X坐标上的伸缩尺寸
+        * 第三个参数fromY为动画起始时Y坐标上的伸缩尺寸
+        * 第四个参数toY为动画结束时Y坐标上的伸缩尺寸
+        *   说明:
+        *       以上四种属性值
+        *       0.0表示收缩到没有
+        *       1.0表示正常无伸缩
+        *       值小于1.0表示收缩
+        *       值大于1.0表示放大
+        * 第五个参数pivotXType为动画在X轴相对于物件位置类型
+        * 第六个参数pivotXValue为动画相对于物件的X坐标的开始位置
+        * 第七个参数pivotYType为动画在Y轴相对于物件位置类型
+        * 第八个参数pivotYValue为动画相对于物件的Y坐标的开始位置
+        * 后四个参数用于确定缩放基准点
         * */
         ScaleAnimation scaleAnimation = new ScaleAnimation(
                 1.0f, 1.2f,
@@ -117,6 +127,8 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(1000);
+        scaleAnimation.setRepeatCount(1);
+        scaleAnimation.setRepeatMode(Animation.REVERSE);
 
         mImage.startAnimation(scaleAnimation);
     }
@@ -135,6 +147,8 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(1000);
+        rotateAnimation.setRepeatCount(1);
+        rotateAnimation.setRepeatMode(Animation.REVERSE);
 
         mImage.startAnimation(rotateAnimation);
     }
@@ -144,11 +158,13 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
      * */
     private void alphaAnimation() {
         /*
-        * 参数1： 起始透明度
-        * 参数2： 终止透明度
+        * 参数1： 动画开始时透明度
+        * 参数2： 动画结束时透明度
+        * 说明: 0.0表示完全透明,1.0表示完全不透明
         * */
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.5f);
         alphaAnimation.setDuration(1000);
+        // 动画结束时保持在结束状态
         alphaAnimation.setFillAfter(true);
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -174,14 +190,23 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
      * 组合动画，同时包含以上四种基本动画中的一种或多种
      * */
     private void setAnimation() {
+        /*
+        * 动画执行完后，再重新执行一遍，重新执行时朝相反方向缩放，必须指定repeatCount，重新执行才会生效
+        * 必须单独为每一个动画效果设置repeat效果，在set中设置不会生效
+        * */
+
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.5f);
         alphaAnimation.setDuration(1000);
+        alphaAnimation.setRepeatCount(1);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
 
         RotateAnimation rotateAnimation = new RotateAnimation(
                 0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(1000);
+        rotateAnimation.setRepeatCount(1);
+        rotateAnimation.setRepeatMode(Animation.REVERSE);
 
         ScaleAnimation scaleAnimation = new ScaleAnimation(
                 1.0f, 1.2f,
@@ -189,6 +214,8 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(1000);
+        scaleAnimation.setRepeatCount(1);
+        scaleAnimation.setRepeatMode(Animation.REVERSE);
 
         TranslateAnimation translateAnimation = new TranslateAnimation(
                 Animation.RELATIVE_TO_SELF, 0f,
@@ -196,6 +223,8 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 0f,
                 Animation.RELATIVE_TO_SELF, 1.0f);
         translateAnimation.setDuration(1000);
+        translateAnimation.setRepeatCount(1);
+        translateAnimation.setRepeatMode(Animation.REVERSE);
 
         // 传入参数true，则AnimationSet中所有Animation共用一个interpolator
         AnimationSet animationSet = new AnimationSet(true);
