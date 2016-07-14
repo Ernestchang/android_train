@@ -28,4 +28,18 @@
         android:textAllCaps="false"
         android:text="layout"/>
 
+    <Button
+        android:id="@+id/btn_property"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="property"/>
+
+    <Button
+        android:id="@+id/btn_arc_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Arc Menu"/>
+
 </LinearLayout>

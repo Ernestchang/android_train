@@ -24,6 +24,12 @@
 
         <activity android:name=".layout.LayoutAnimationActivity"
             android:label="Layout"/>
+
+        <activity android:name=".property.PropertyAnimationActivity"
+            android:label="property"/>
+
+        <activity android:name=".property.ArcMenuActivity"
+            android:label="ArcMenu"/>
     </application>
 
 </manifest>

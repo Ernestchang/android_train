@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.hc.animation.frame.FrameAnimationActivity;
 import com.hc.animation.layout.LayoutAnimationActivity;
+import com.hc.animation.property.ArcMenuActivity;
+import com.hc.animation.property.PropertyAnimationActivity;
 import com.hc.animation.tween.TweenAnimationActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_tween).setOnClickListener(this);
         findViewById(R.id.btn_frame).setOnClickListener(this);
         findViewById(R.id.btn_layout).setOnClickListener(this);
+        findViewById(R.id.btn_property).setOnClickListener(this);
+        findViewById(R.id.btn_arc_menu).setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +36,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_layout:
                 start(LayoutAnimationActivity.class);
+                break;
+            case R.id.btn_property:
+                start(PropertyAnimationActivity.class);
+                break;
+            case R.id.btn_arc_menu:
+                start(ArcMenuActivity.class);
                 break;
         }
     }
