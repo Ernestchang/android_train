@@ -97,13 +97,7 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 1.0f);
         translateAnimation.setDuration(1000);
 
-        // 传入参数true，则AnimationSet中所有Animation共用一个interpolator
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.addAnimation(translateAnimation);
-        // 动画结束是否保持结束时状态
-//        animationSet.setFillAfter(true);
-
-        mImage.startAnimation(animationSet);
+        mImage.startAnimation(translateAnimation);
     }
 
     /**
@@ -124,13 +118,7 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(1000);
 
-        // 传入参数true，则AnimationSet中所有Animation共用一个interpolator
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.addAnimation(scaleAnimation);
-        // 动画结束是否保持结束时状态
-//        animationSet.setFillAfter(true);
-
-        mImage.startAnimation(animationSet);
+        mImage.startAnimation(scaleAnimation);
     }
 
     /**
@@ -148,13 +136,7 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                 Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(1000);
 
-        // 传入参数true，则AnimationSet中所有Animation共用一个interpolator
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.addAnimation(rotateAnimation);
-        // 动画结束是否保持结束时状态
-//        animationSet.setFillAfter(true);
-
-        mImage.startAnimation(animationSet);
+        mImage.startAnimation(rotateAnimation);
     }
 
     /**
@@ -167,13 +149,8 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
         * */
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.5f);
         alphaAnimation.setDuration(1000);
-
-        // 传入参数true，则AnimationSet中所有Animation共用一个interpolator
-        AnimationSet animationSet = new AnimationSet(true);
-        animationSet.addAnimation(alphaAnimation);
-        // 动画结束是否保持结束时状态
-//        animationSet.setFillAfter(true);
-        animationSet.setAnimationListener(new Animation.AnimationListener() {
+        alphaAnimation.setFillAfter(true);
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 mTv.setText("onAnimationStart");
@@ -190,7 +167,7 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
             }
         });
 
-        mImage.startAnimation(animationSet);
+        mImage.startAnimation(alphaAnimation);
     }
 
     /**
@@ -227,8 +204,6 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
         animationSet.addAnimation(rotateAnimation);
         animationSet.addAnimation(scaleAnimation);
         animationSet.addAnimation(translateAnimation);
-        // 动画结束是否保持结束时状态
-//        animationSet.setFillAfter(true);
 
         mImage.startAnimation(animationSet);
     }
