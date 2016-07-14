@@ -18,6 +18,9 @@
 
         <activity android:name=".tween.TweenAnimationActivity"
             android:label="Tween"/>
+
+        <activity android:name=".frame.FrameAnimationActivity"
+            android:label="Frame"/>
     </application>
 
 </manifest>

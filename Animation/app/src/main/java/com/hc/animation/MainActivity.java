@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.hc.animation.frame.FrameAnimationActivity;
 import com.hc.animation.tween.TweenAnimationActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.btn_tween).setOnClickListener(this);
+        findViewById(R.id.btn_frame).setOnClickListener(this);
     }
 
     @Override
@@ -22,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btn_tween:
                 start(TweenAnimationActivity.class);
+                break;
+            case R.id.btn_frame:
+                start(FrameAnimationActivity.class);
                 break;
         }
     }
