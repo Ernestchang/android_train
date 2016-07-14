@@ -21,6 +21,9 @@
 
         <activity android:name=".frame.FrameAnimationActivity"
             android:label="Frame"/>
+
+        <activity android:name=".layout.LayoutAnimationActivity"
+            android:label="Layout"/>
     </application>
 
 </manifest>
