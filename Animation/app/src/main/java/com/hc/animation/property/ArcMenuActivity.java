@@ -64,7 +64,7 @@ public class ArcMenuActivity extends AppCompatActivity implements View.OnClickLi
 
         // 几个子菜单依次展开
         for (int i = 1; i < mImgIds.length; i++) {
-            ObjectAnimator animator = ObjectAnimator.ofFloat(mImages.get(i), "translationY", 0f, 200f * i);
+            ObjectAnimator animator = ObjectAnimator.ofFloat(mImages.get(i), "translationY", 0f, 150f * i);
             animator.setStartDelay(300 * i);
             animator.setInterpolator(new BounceInterpolator());
             animator.setDuration(500).start();
@@ -77,7 +77,7 @@ public class ArcMenuActivity extends AppCompatActivity implements View.OnClickLi
     private void closeMenuAnim() {
         // 几个子菜单依次关闭
         for (int i = 1; i < mImgIds.length; i++) {
-            ObjectAnimator animator = ObjectAnimator.ofFloat(mImages.get(i), "translationY", 200f * i, 0f);
+            ObjectAnimator animator = ObjectAnimator.ofFloat(mImages.get(i), "translationY", 150f * i, 0f);
             animator.setStartDelay(300 * i);
             animator.setInterpolator(new BounceInterpolator());
             animator.setDuration(500).start();
