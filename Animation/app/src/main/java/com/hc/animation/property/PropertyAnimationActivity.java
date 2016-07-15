@@ -4,10 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
 
         findViewById(R.id.btn_single).setOnClickListener(this);
         findViewById(R.id.btn_set).setOnClickListener(this);
+        findViewById(R.id.btn_timer).setOnClickListener(this);
         mImage = (ImageView) findViewById(R.id.img);
     }
 
@@ -72,6 +77,9 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
                 break;
             case R.id.btn_set:
                 animatorSet();
+                break;
+            case R.id.btn_timer:
+                timer(view);
                 break;
         }
     }
@@ -131,6 +139,46 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
         animatorSet.play(animatorTranslateX).with(animatorTranslateY);
         animatorSet.play(animatorRotate).after(animatorTranslateX).with(animatorAlpha);
         animatorSet.setDuration(1000).start();
+    }
+
+    /**
+     * 使用ValueAnimator实现记时器
+     * */
+    private void timer(View view) {
+        final Button button = (Button) view;
+
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(0, 100);
+        valueAnimator.setDuration(3000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                Integer value = (Integer) valueAnimator.getAnimatedValue();
+                button.setText("" + value);
+            }
+        });
+        valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                button.setText("timer");
+            }
+        });
+        valueAnimator.start();
+    }
+
+    private void method() {
+        /*
+        * 为TypeEvaluator指定泛型，可以实现各种对象
+        * */
+        ValueAnimator valueAnimator = ValueAnimator.ofObject(new TypeEvaluator<PointF>() {
+            /*
+            * 每一个参数fraction， 是一个时间因子，从0到1变化
+            * */
+            @Override
+            public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
+                return null;
+            }
+        });
     }
 
 }
